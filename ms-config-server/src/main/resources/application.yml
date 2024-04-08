@@ -13,7 +13,7 @@ spring:
           searchPaths: config-data
           #username:
           #password:
-          default-label: main
+          default-label: gateway-server
 
 
 
