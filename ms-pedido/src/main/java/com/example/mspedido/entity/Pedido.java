@@ -6,6 +6,8 @@ import lombok.Data;
 
 import java.util.List;
 
+@Data
+@Entity
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +20,6 @@ public class Pedido {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "venta_id")
     private List<PedidoDetalle> detalle;
-
 
 
 }
