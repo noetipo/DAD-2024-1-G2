@@ -1,13 +1,9 @@
-package com.example.mscliente.entity;
+package com.example.mspedido.dto;
 
-import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
-@Entity
-public class Cliente {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ClienteDto {
     private Integer id;
     private String dni;
     private String nombre;
@@ -15,6 +11,4 @@ public class Cliente {
     private String telefono;
     private String correoElectronico;
     private String direccion;
-
-
 }
