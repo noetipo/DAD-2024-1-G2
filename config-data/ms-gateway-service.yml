@@ -21,6 +21,6 @@ spring:
           predicates:
             - Path=/categoria/**
         - id: my-app
-          uri: lb://my-app
+          #uri: lb://my-app
           predicates:
             - Path=/users/**
