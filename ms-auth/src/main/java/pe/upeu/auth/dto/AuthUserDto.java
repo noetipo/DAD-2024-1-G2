@@ -1,9 +1,10 @@
-package com.example.msauth.dto;
+package pe.upeu.auth.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 
 @Data
 @Builder

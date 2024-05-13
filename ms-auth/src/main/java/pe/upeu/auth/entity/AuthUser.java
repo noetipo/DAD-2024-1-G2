@@ -1,4 +1,4 @@
-package com.example.msauth.entity;
+package pe.upeu.auth.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,5 +21,6 @@ public class AuthUser {
     private int id;
     private String userName;
     private String password;
+
 
 }
