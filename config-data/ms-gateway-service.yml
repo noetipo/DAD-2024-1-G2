@@ -32,3 +32,8 @@ spring:
           predicates:
             - Path=/cliente/**
 
+        - id: ms-auth-service
+          uri: lb://ms-auth-service
+          predicates:
+            - Path=/auth/**
+
