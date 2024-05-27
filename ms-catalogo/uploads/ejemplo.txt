@@ -1,0 +1,9 @@
+1.Algoritmo de agrupamiento DBSCAN
+2.Algoritmo de Mezcla Gaussiana
+3.Algoritmo BIRCH
+4.Algoritmo de agrupamiento por Propagación de Afinidad
+5.Algoritmo de agrupamiento de Desplazamiento Medio
+6.Algoritmo OPTICS
+7.Algoritmo de agrupamiento de Jerarquía Aglomerativa
+8.AGNES
+9.Mean Shift
