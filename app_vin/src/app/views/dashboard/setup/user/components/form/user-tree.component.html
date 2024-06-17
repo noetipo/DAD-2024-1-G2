@@ -1,0 +1,66 @@
+<div
+    style="position: initial; display: initial; flex: initial; width: initial;"
+>
+    <div class="flex flex-col flex-auto min-w-0">
+        <div class="bg-card p-6 pl-3 mt-6 rounded shadow">
+            <div class="flex justify-end mt-1 sm:mt-1 pr-6 sm:ml-4">
+                
+            </div>
+
+            <mat-tree
+                [dataSource]="tree.dataSource"
+                [treeControl]="tree.treeControl"
+            >
+                <!-- This is the tree node template for leaf nodes -->
+                <mat-tree-node
+                    *matTreeNodeDef="let node"
+                    matTreeNodePaddingIndent="32"
+                    matTreeNodePadding
+                >
+                    <div class="flex items-center font-mono">
+                        <div
+                            class="flex items-center justify-center w-8 h-8 mr-2"
+                            *ngIf="!node.last"
+                        >
+                            ├─
+                        </div>
+                        <div
+                            class="flex items-center justify-center w-8 h-8 mr-2"
+                            *ngIf="node.last"
+                        >
+                            └─
+                        </div>
+
+                        <span>
+                            {{ node.nombre }}
+                        </span>
+                    </div>
+                </mat-tree-node>
+                <!-- This is the tree node template for expandable nodes -->
+                <mat-tree-node
+                    *matTreeNodeDef="let node; when: hasChild"
+                    matTreeNodePaddingIndent="32"
+                    matTreeNodePadding
+                >
+                    <button
+                        mat-icon-button
+                        matTreeNodeToggle
+                        [attr.aria-label]="'toggle ' + node.name"
+                    >
+                        <mat-icon class="icon-size-4">
+                            {{
+                                tree.treeControl.isExpanded(node)
+                                    ? "remove"
+                                    : "add"
+                            }}
+                        </mat-icon>
+                    </button>
+
+                    <span class="font-mono">
+                        {{ node.nombre }}
+                    </span>
+                </mat-tree-node>
+            </mat-tree>
+        </div>
+    </div>
+</div>

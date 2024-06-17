@@ -1,0 +1,150 @@
+<div
+    style="position: initial; display: initial; flex: initial; width: initial;"
+>
+    <div class="flex flex-col flex-auto min-w-0">
+        <div class="flex justify-end mt-1 sm:mt-1 pr-6 sm:ml-4">
+            <button
+                mat-flat-button
+                [color]="'primary'"
+                class="ml-4"
+                (click)="goNew(null)"
+            >
+                <mat-icon
+                    [svgIcon]="'heroicons_outline:plus'"
+                ></mat-icon>
+                <span class="ml-2">Nuevo Nodo Padre</span>
+            </button>
+        </div>
+
+        <div class="bg-card p-6 pl-3 mt-6 rounded shadow">
+            <div class="flex justify-end mt-1 sm:mt-1 pr-6 sm:ml-4">
+                
+            </div>
+
+            <mat-tree
+                [dataSource]="tree.dataSource"
+                [treeControl]="tree.treeControl"
+            >
+                <!-- This is the tree node template for leaf nodes -->
+                <mat-tree-node
+                    *matTreeNodeDef="let node"
+                    matTreeNodePaddingIndent="32"
+                    matTreeNodePadding
+                >
+                    <div class="flex items-center font-mono">
+                        <div
+                            class="flex items-center justify-center w-8 h-8 mr-2"
+                            *ngIf="!node.last"
+                        >
+                            ├─
+                        </div>
+                        <div
+                            class="flex items-center justify-center w-8 h-8 mr-2"
+                            *ngIf="node.last"
+                        >
+                            └─
+                        </div>
+
+                        <span>
+                            {{ node.nombre }}
+                        </span>
+
+                        <button
+                            class="ml-1 -mr-4"
+                            mat-icon-button
+                            [matMenuTriggerFor]="chatsHeaderMenu">
+                            <mat-icon [svgIcon]="'heroicons_outline:ellipsis-vertical'"></mat-icon>
+                            <mat-menu #chatsHeaderMenu>
+                                <button 
+                                    mat-menu-item
+                                    (click)="goNew(node)">
+                                    <mat-icon
+                                        class="text-lime-600 hover:text-lime-700 cursor-pointer"
+                                        [svgIcon]="'heroicons_outline:plus'"
+                                    ></mat-icon>
+                                    Agregar nodo hijo para: {{ node.nombre }}
+                                </button>
+                                <button 
+                                    mat-menu-item
+                                    (click)="goEdit(node.id)">
+                                    <mat-icon
+                                        class="text-amber-400 hover:text-amber-500 cursor-pointer"
+                                        >edit</mat-icon>
+                                    Editar nodo: {{ node.nombre }}
+                                </button>
+                                <button
+                                    mat-menu-item
+                                    (click)="goDelete(node.id)">
+                                    <mat-icon
+                                        class="text-rose-500 hover:text-rose-600 cursor-pointer"
+                                        >delete_sweep</mat-icon>
+                                    Eliminar nodo: {{ node.nombre }}
+                                </button>
+                            </mat-menu>
+                        </button>
+                    
+                    </div>
+                </mat-tree-node>
+                <!-- This is the tree node template for expandable nodes -->
+                <mat-tree-node
+                    *matTreeNodeDef="let node; when: hasChild"
+                    matTreeNodePaddingIndent="32"
+                    matTreeNodePadding
+                >
+                    <button
+                        mat-icon-button
+                        matTreeNodeToggle
+                        [attr.aria-label]="'toggle ' + node.name"
+                    >
+                        <mat-icon class="icon-size-4">
+                            {{
+                                tree.treeControl.isExpanded(node)
+                                    ? "remove"
+                                    : "add"
+                            }}
+                        </mat-icon>
+                    </button>
+
+                    <span class="font-mono">
+                        {{ node.nombre }}
+                    </span>
+
+                    <button
+                        class="ml-1 -mr-4"
+                        mat-icon-button
+                        [matMenuTriggerFor]="chatsHeaderMenu">
+                        <mat-icon [svgIcon]="'heroicons_outline:ellipsis-vertical'"></mat-icon>
+                        <mat-menu #chatsHeaderMenu>
+                            <button 
+                                mat-menu-item
+                                (click)="goNew(node)">
+                                <mat-icon
+                                    class="text-lime-600 hover:text-lime-700 cursor-pointer"
+                                    [svgIcon]="'heroicons_outline:plus'"
+                                ></mat-icon>
+                                Agregar nodo hijo para: {{ node.nombre }}
+                            </button>
+                            <button 
+                                mat-menu-item
+                                (click)="goEdit(node.id)">
+                                <mat-icon
+                                    class="text-amber-400 hover:text-amber-500 cursor-pointer"
+                                    >edit</mat-icon>
+                                Editar nodo: {{ node.nombre }}
+                            </button>
+                            <button
+                                mat-menu-item
+                                (click)="goDelete(node.id)">
+                                <mat-icon
+                                    class="text-rose-500 hover:text-rose-600 cursor-pointer"
+                                    >delete_sweep</mat-icon>
+                                Eliminar nodo: {{ node.nombre }}
+                            </button>
+                        </mat-menu>
+                    </button>
+
+                </mat-tree-node>
+            </mat-tree>
+        </div>
+    </div>
+</div>
