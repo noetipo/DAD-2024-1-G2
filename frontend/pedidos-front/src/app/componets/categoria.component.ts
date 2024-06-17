@@ -1,32 +1,30 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {Categorias} from "./models/categorias";
+import {Categorias} from "../models/categorias";
+
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-categoria',
   standalone: true,
   imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  templateUrl: './categoria.component.html',
+  styleUrl: './categoria.component.scss'
 })
-export class AppComponent implements OnInit {
-  public categorias:Categorias[]=[];
+export class CategoriaComponent implements OnInit {
 
-  title = 'pedidos';
+  @Input() categoria?:Categorias;
+  @Input() saludo?:string;
+  @Output() respuestaEvent = new EventEmitter<string>();
+
+
   constructor() {
-    console.log("constructor AppComponent");
+
   }
   ngOnInit() {
-    console.log("ngOnInit")
-    for (let i = 0; i < 10; i++) {
-        let categoria= new Categorias();
-        categoria.id=i;
-        categoria.nombre="categoria"+i;
-        this.categorias.push(categoria);
-    }
-    console.log(this.categorias);
+
   }
-  public  eventClick(categorias:Categorias){
-    console.log("click:", categorias);
-  }
+public responseMensaje(){
+  console.log("click event");
+  this.respuestaEvent.emit("Saludo desde "+ this.categoria?.nombre);
+}
 }
