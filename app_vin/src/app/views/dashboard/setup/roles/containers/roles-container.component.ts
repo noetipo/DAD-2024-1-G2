@@ -62,7 +62,7 @@ export class RolesContainerComponent implements OnInit {
     public eventNew($event: boolean): void {
         if ($event) {
             const rolForm = this._matDialog.open(RolesNewComponent);
-            rolForm.componentInstance.title = 'Nuevo Client' || null;
+            rolForm.componentInstance.title = 'Nuevo Product' || null;
             rolForm.afterClosed().subscribe((result: any) => {
                 if (result) {
                     this.saveRol(result);

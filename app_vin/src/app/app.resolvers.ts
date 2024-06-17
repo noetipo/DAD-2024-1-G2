@@ -24,7 +24,7 @@ export const initialDataResolver = () =>
         {
             id         : '608b4479-a3ac-4e26-8675-3609c52aca58',
             image      : 'assets/images/avatars/male-04.jpg',
-            title      : 'Leo Gill (Client #8817)',
+            title      : 'Leo Gill (Product #8817)',
             description: 'You can download the latest invoices now. Please check and let me know.',
             time       : now.minus({minutes: 50}).toISO(), // 50 minutes ago
             read       : false,

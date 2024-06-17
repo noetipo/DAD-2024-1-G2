@@ -51,6 +51,7 @@ export class ClientContainerComponent implements OnInit {
     getClients(): void {
         this._clientService.getAll$().subscribe(
             (response) => {
+                console.log(response);
                 this.clients = response;
             },
             (error) => {
@@ -62,7 +63,7 @@ export class ClientContainerComponent implements OnInit {
     public eventNew($event: boolean): void {
         if ($event) {
             const clienteForm = this._matDialog.open(ClientNewComponent);
-            clienteForm.componentInstance.title = 'Nuevo Client' || null;
+            clienteForm.componentInstance.title = 'Nuevo Product' || null;
             clienteForm.afterClosed().subscribe((result: any) => {
                 if (result) {
                     this.saveClient(result);

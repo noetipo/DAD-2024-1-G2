@@ -33,14 +33,26 @@ import { MatDialog } from '@angular/material/dialog';
                                 <th class="w-2/6 table-header text-center px-5 border-r">
                                     Nombre
                                 </th>
+                                <th class="w-2/6 table-header text-center px-5 border-r">
+                                    Apellidos
+                                </th>
+                                <th class="w-2/6 table-header text-center px-5 border-r">
+                                    Correo Electronico
+                                </th>
+
+                                <th class="w-2/6 table-header text-center px-5 border-r">
+                                    DNI
+                                </th>
+
                                 <th class="w-1/6 table-header text-center border-r">
-                                    Estado
+                                    Teléfono
                                 </th>
                                 <th class="w-2/6 table-header text-center">
                                     Acciones
                                 </th>
                             </tr>
                         </thead>
+
                         <tbody
                             class="bg-white"
                             *ngFor="let r of clients; let i = index">
@@ -51,13 +63,19 @@ import { MatDialog } from '@angular/material/dialog';
                                 <td class="w-2/6 p-2  text-start border-b text-sm">
                                     {{ r.nombre }}
                                 </td>
-                                <td class="w-1/6 p-2 text-center border-b text-sm">
-                                    <div
-                                        class="relative grid items-center font-sans font-bold uppercase whitespace-nowrap select-none bg-green-500/20 text-green-600 py-1 px-2 text-xs rounded-md"
-                                        style="opacity: 1">
-                                        <span class="">ACTIVO</span>
-                                    </div>
+                                <td class="w-2/6 p-2  text-start border-b text-sm">
+                                    {{ r.apellidos }}
                                 </td>
+                                <td class="w-2/6 p-2  text-start border-b text-sm">
+                                    {{ r.correoElectronico }}
+                                </td>
+                                <td class="w-2/6 p-2  text-start border-b text-sm">
+                                    {{ r.dni }}
+                                </td>
+                                <td class="w-2/6 p-2  text-start border-b text-sm">
+                                    {{ r.telefono }}
+                                </td>
+
 
                                 <td class="w-2/6 p-2 text-center border-b text-sm">
                                     <div class="flex justify-center space-x-3">

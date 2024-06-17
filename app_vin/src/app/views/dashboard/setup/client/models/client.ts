@@ -5,5 +5,5 @@ export class Client {
     apellidos?: string;
     dni?: string;
     telefono?: string;
-    correo?: string;
+    correoElectronico?: string;
 }

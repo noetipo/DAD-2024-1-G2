@@ -14,6 +14,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {Product} from "../../models/product";
+import {Category} from "../../models/category";
+import {MatOptionModule} from "@angular/material/core";
+import {MatSelectModule} from "@angular/material/select";
 
 @Component({
     selector: 'app-clients-new',
@@ -26,6 +30,8 @@ import { MatInputModule } from '@angular/material/input';
         MatSlideToggleModule,
         MatFormFieldModule,
         MatInputModule,
+        MatOptionModule,
+        MatSelectModule,
     ],
     template: `
         <div class="flex flex-col max-w-240 md:min-w-160 max-h-screen -m-6">
@@ -42,27 +48,28 @@ import { MatInputModule } from '@angular/material/input';
 
 
             <!-- Compose form -->
-            <form class="flex flex-col flex-auto p-6 sm:p-8 overflow-y-auto" [formGroup]="clientForm">
+            <form class="flex flex-col flex-auto p-6 sm:p-8 overflow-y-auto" [formGroup]="productForm">
                 <mat-form-field>
                     <mat-label>Nombre</mat-label>
                     <input matInput formControlName="nombre" />
                 </mat-form-field>
                 <mat-form-field>
-                    <mat-label>Apellidos</mat-label>
-                    <input matInput formControlName="apellidos" />
+                    <mat-select
+                        [placeholder]="'Producto'"
+                        formControlName="categoria">
+                        @for (r of categories;track r.id; let idx = $index)
+                        {
+                            <mat-option [value]="r.id">{{r.nombre}}</mat-option>
+                        }
+                    </mat-select>
+                    <mat-icon
+                        class="icon-size-5"
+                        matPrefix
+                        [svgIcon]="'heroicons_outline:adjustments-vertical'"
+                    ></mat-icon>
+
                 </mat-form-field>
-                <mat-form-field>
-                    <mat-label>DNI</mat-label>
-                    <input matInput formControlName="dni" />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Telefono</mat-label>
-                    <input matInput formControlName="telefono" />
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Correo</mat-label>
-                    <input matInput formControlName="correoElectronico" />
-                </mat-form-field>
+
                 <!-- Actions -->
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
                     <div class="flex space-x-2 items-center mt-4 sm:mt-0 ml-auto">
@@ -76,27 +83,25 @@ import { MatInputModule } from '@angular/material/input';
         </div>
     `,
 })
-export class ClientNewComponent implements OnInit {
+export class ProductNewComponent implements OnInit {
     @Input() title: string = '';
+    @Input() categories: Category[] = [];
     abcForms: any;
-    clientForm = new FormGroup({
-
+    productForm = new FormGroup({
         nombre: new FormControl('', [Validators.required]),
-        apellidos: new FormControl('', [Validators.required]),
-        dni: new FormControl('', [Validators.required]),
-        telefono: new FormControl('', [Validators.required]),
-        correoElectronico: new FormControl('', [Validators.required]),
+        categoria: new FormControl(null, [Validators.required]),
+
     });
 
-    constructor(private _matDialog: MatDialogRef<ClientNewComponent>) {}
+    constructor(private _matDialog: MatDialogRef<ProductNewComponent>) {}
 
     ngOnInit() {
         this.abcForms = abcForms;
     }
 
     public saveForm(): void {
-        if (this.clientForm.valid) {
-            this._matDialog.close(this.clientForm.value);
+        if (this.productForm.valid) {
+            this._matDialog.close(this.productForm.value);
         }
     }
 

@@ -125,6 +125,7 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy {
                     icon: 'heroicons_solid:user-group',
                     link: '/homeScreen/setup/role',
                 },
+
             ],
         },
     ];
@@ -152,6 +153,14 @@ export class ClassyLayoutComponent implements OnInit, OnDestroy {
                         icon: 'heroicons_outline:chart-pie',
                         link: '/homeScreen/setup/client',
                     },
+                    {
+                        id: 'SetupProdct',
+                        title: 'Setup producto',
+                        type: 'basic',
+                        icon: 'heroicons_outline:chart-pie',
+                        link: '/homeScreen/setup/product',
+                    },
+
                 ],
             },
 
